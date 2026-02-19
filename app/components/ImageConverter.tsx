@@ -204,7 +204,7 @@ export default function ImageConverter({ defaultFormat = 'webp' }: Props) {
           {completedCount > 0 && (
             <button 
               onClick={downloadAsZip}
-              className="w-full sm:w-auto bg-slate-900 text-white px-8 py-4 rounded-2xl font-black flex items-center justify-center gap-3 hover:bg-blue-600 transition-all shadow-xl shadow-slate-200 order-1 sm:order-2"
+              className="w-full sm:w-auto bg-slate-900 text-white px-8 py-4 rounded-2xl font-black flex items-center justify-center gap-3 hover:bg-[#FF3C00] transition-all shadow-xl shadow-slate-200 order-1 sm:order-2"
             >
               <Zap size={20} fill="currentColor" />
               Download All as ZIP ({completedCount})
