@@ -10,7 +10,7 @@ export default function Home() {
     <main className="min-h-screen bg-white py-16">
       <div className="max-w-4xl mx-auto text-center px-4">
 <h1 className="text-5xl md:text-6xl font-black tracking-tighter mb-4 text-slate-900 leading-tight">
-  Best <span className="text-blue-600">free</span> online <span className="text-blue-600">Image Converter</span> & Optimizer
+  Best <span className="text-[#FF3C00]">free</span> online <span className="text-[#FF3C00]">Image Converter</span> & Optimizer
 </h1>
 <p className="text-xl text-slate-500 max-w-2xl mx-auto mb-6" >
     Bulk convert PNG, JPG, and WebP to next-gen formats like <strong>AVIF</strong> and <strong>WebP</strong>. 
