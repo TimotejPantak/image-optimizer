@@ -174,7 +174,7 @@ export default function ImageConverter({ defaultFormat = 'webp' }: Props) {
                     </span>
                     <button 
                       onClick={() => downloadSingle(item)}
-                      className="p-2.5 bg-green-500 text-white rounded-xl hover:bg-green-600 transition"
+                      className="p-2.5 bg-green-500 text-white rounded-xl hover:bg-green-600 transition hover:cursor-pointer"
                       title="Download"
                     >
                       <Download size={18} />
@@ -182,7 +182,7 @@ export default function ImageConverter({ defaultFormat = 'webp' }: Props) {
                   </>
                 )}
 
-                <button onClick={() => removeFile(item.id)} className="p-2.5 text-slate-300 hover:text-red-500 transition">
+                <button onClick={() => removeFile(item.id)} className="p-2.5 text-slate-300 hover:text-red-500 transition hover:cursor-pointer">
                   <Trash2 size={18} />
                 </button>
               </div>
@@ -196,7 +196,7 @@ export default function ImageConverter({ defaultFormat = 'webp' }: Props) {
         <div className="mt-10 flex flex-col sm:flex-row gap-4 items-center justify-between bg-slate-50 p-6 rounded-[2rem]">
           <button 
             onClick={() => setFiles([])}
-            className="text-slate-400 hover:text-red-500 font-bold text-sm transition order-2 sm:order-1"
+            className="text-slate-400 hover:text-red-500 hover:cursor-pointer font-bold text-sm transition order-2 sm:order-1"
           >
             Clear all files
           </button>
@@ -204,7 +204,7 @@ export default function ImageConverter({ defaultFormat = 'webp' }: Props) {
           {completedCount > 0 && (
             <button 
               onClick={downloadAsZip}
-              className="w-full sm:w-auto bg-slate-900 text-white px-8 py-4 rounded-2xl font-black flex items-center justify-center gap-3 hover:bg-[#FF3C00] transition-all shadow-xl shadow-slate-200 order-1 sm:order-2"
+              className="w-full sm:w-auto bg-slate-900 text-white px-8 py-4 rounded-2xl font-black flex items-center justify-center gap-3 hover:bg-[#FF3C00] hover:cursor-pointer transition-all shadow-xl shadow-slate-200 order-1 sm:order-2"
             >
               <Zap size={20} fill="currentColor" />
               Download All as ZIP ({completedCount})
