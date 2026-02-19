@@ -117,7 +117,7 @@ export default function ImageConverter({ defaultFormat = 'webp' }: Props) {
             key={f}
             onClick={() => setFormat(f)}
             className={`px-6 py-2 rounded-xl font-bold transition-all ${
-              format === f ? 'bg-blue-600 text-white shadow-lg' : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
+              format === f ? 'bg-[#FF3C00] text-white shadow-lg' : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
             }`}
           >
             {f.toUpperCase()}
@@ -127,11 +127,11 @@ export default function ImageConverter({ defaultFormat = 'webp' }: Props) {
 
       {/* Drag & Drop Area */}
       <div {...getRootProps()} className={`border-4 border-dashed rounded-[2.5rem] p-12 text-center cursor-pointer transition-all ${
-        isDragActive ? 'border-blue-500 bg-blue-50' : 'border-slate-200 hover:border-blue-400 bg-slate-50/50'
+        isDragActive ? 'border-[#FF3C00] bg-orange-50' : 'border-slate-200 hover:border-blue-400 bg-slate-50/50'
       }`}>
         <input {...getInputProps()} />
         <div className="bg-white w-16 h-16 rounded-2xl shadow-sm flex items-center justify-center mx-auto mb-4">
-          <Upload className="text-blue-500" size={28} />
+          <Upload className="text-[FF3C00]" size={28} />
         </div>
         <p className="text-xl font-bold text-slate-800">Drop and Convert</p>
         <p className="text-slate-400 mt-1">Files will be processed immediately</p>
@@ -160,7 +160,7 @@ export default function ImageConverter({ defaultFormat = 'webp' }: Props) {
               </div>
 
               <div className="flex items-center gap-2 ml-4">
-                {item.status === 'processing' && <Loader2 className="animate-spin text-blue-500" size={20} />}
+                {item.status === 'processing' && <Loader2 className="animate-spin text-[#FF3C00]" size={20} />}
                 
                 {item.status === 'completed' && (
                   <>
