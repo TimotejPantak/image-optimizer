@@ -22,7 +22,7 @@ export default function Home() {
           <p className="text-slate-400 font-bold text-xs uppercase tracking-widest mb-6">Popular Tools</p>
           <div className="flex flex-wrap justify-center gap-x-6 gap-y-3">
             {popularConversions.map(slug => (
-              <Link key={slug} href={`/${slug}`} className="text-blue-500 hover:text-orange-700 font-medium text-sm">
+              <Link key={slug} href={`/${slug}`} className="text-black hover:text-orange-700 font-medium text-sm">
                 {slug.replace(/-/g, ' ').toUpperCase()}
               </Link>
             ))}
