@@ -127,7 +127,7 @@ export default function ImageConverter({ defaultFormat = 'webp' }: Props) {
 
       {/* Drag & Drop Area */}
       <div {...getRootProps()} className={`border-4 border-dashed rounded-[2.5rem] p-12 text-center cursor-pointer transition-all ${
-        isDragActive ? 'border-[#FF3C00] bg-orange-50' : 'border-slate-200 hover:border-blue-400 bg-slate-50/50'
+        isDragActive ? 'border-[#FF3C00] bg-orange-50' : 'border-slate-200 hover:border-[#FF3C00] bg-slate-50/50'
       }`}>
         <input {...getInputProps()} />
         <div className="bg-white w-16 h-16 rounded-2xl shadow-sm flex items-center justify-center mx-auto mb-4">
