@@ -3,7 +3,7 @@
 import { useState, useCallback, useEffect } from 'react';
 import { useDropzone } from 'react-dropzone';
 import JSZip from 'jszip';
-import { Upload, FileImage, CheckCircle, Loader2, Download, Trash2, Zap, ArrowRight } from 'lucide-react';
+import { Upload, FileImage, Loader2, Download, Trash2, Zap, ArrowRight, Link } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 interface FileStatus {
@@ -22,6 +22,9 @@ interface Props {
 export default function ImageConverter({ defaultFormat = 'webp' }: Props) {
   const [files, setFiles] = useState<FileStatus[]>([]);
   const [format, setFormat] = useState(defaultFormat);
+  const [urlInput, setUrlInput] = useState('');
+  const [urlLoading, setUrlLoading] = useState(false);
+  const [urlError, setUrlError] = useState('');
 
   useEffect(() => {
     setFormat(defaultFormat);
@@ -106,6 +109,62 @@ export default function ImageConverter({ defaultFormat = 'webp' }: Props) {
     setFiles(prev => prev.filter(f => f.id !== id));
   };
 
+  const handleUrlSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!urlInput.trim() || urlLoading) return;
+
+    setUrlError('');
+    setUrlLoading(true);
+
+    try {
+      const res = await fetch('/api/fetch-image', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ url: urlInput.trim() }),
+      });
+
+      if (!res.ok) {
+        const data = await res.json();
+        throw new Error(data.error || 'Failed to fetch image');
+      }
+
+      const blob = await res.blob();
+      const contentType = res.headers.get('content-type') || 'image/png';
+      const ext = contentType.split('/')[1]?.replace('jpeg', 'jpg') || 'png';
+
+      // Extract filename from URL or use a default
+      let filename = 'image';
+      try {
+        const pathname = new URL(urlInput.trim()).pathname;
+        const basename = pathname.split('/').pop();
+        if (basename && basename.includes('.')) {
+          filename = basename;
+        } else {
+          filename = `image.${ext}`;
+        }
+      } catch {
+        filename = `image.${ext}`;
+      }
+
+      const file = new File([blob], filename, { type: contentType });
+      const id = Math.random().toString(36).substring(7);
+      const newFileObj: FileStatus = {
+        file,
+        id,
+        status: 'pending',
+        originalSize: file.size,
+      };
+
+      convertFile(newFileObj);
+      setFiles(prev => [...prev, newFileObj]);
+      setUrlInput('');
+    } catch (err) {
+      setUrlError(err instanceof Error ? err.message : 'Failed to fetch image');
+    } finally {
+      setUrlLoading(false);
+    }
+  };
+
   const completedCount = files.filter(f => f.status === 'completed').length;
 
   return (
@@ -136,6 +195,31 @@ export default function ImageConverter({ defaultFormat = 'webp' }: Props) {
         <p className="text-xl font-bold text-slate-800">Drop and Convert</p>
         <p className="text-slate-400 mt-1">Files will be processed immediately</p>
       </div>
+
+      {/* URL Input */}
+      <form onSubmit={handleUrlSubmit} className="mt-6 flex gap-3">
+        <div className="flex-1 relative">
+          <Link className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-300" size={18} />
+          <input
+            type="text"
+            value={urlInput}
+            onChange={(e) => { setUrlInput(e.target.value); setUrlError(''); }}
+            placeholder="Paste image URL here..."
+            className="w-full pl-11 pr-4 py-3.5 rounded-2xl border border-slate-200 bg-white text-sm text-slate-800 placeholder:text-slate-300 focus:outline-none focus:border-[#FF3C00] transition-colors"
+          />
+        </div>
+        <button
+          type="submit"
+          disabled={!urlInput.trim() || urlLoading}
+          className="px-6 py-3.5 bg-slate-900 text-white rounded-2xl font-bold text-sm hover:bg-[#FF3C00] transition-all disabled:opacity-40 disabled:hover:bg-slate-900 hover:cursor-pointer flex items-center gap-2"
+        >
+          {urlLoading ? <Loader2 className="animate-spin" size={16} /> : <Download size={16} />}
+          Convert
+        </button>
+      </form>
+      {urlError && (
+        <p className="mt-2 text-sm text-red-500 font-medium pl-2">{urlError}</p>
+      )}
 
       {/* File List */}
       <div className="mt-8 space-y-3">
