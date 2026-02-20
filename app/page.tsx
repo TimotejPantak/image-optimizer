@@ -16,7 +16,7 @@ export default function Home() {
     Bulk convert PNG, JPG, and WebP to next-gen formats like <strong>AVIF</strong> and <strong>WebP</strong>. 
     Fast, secure, and high-quality compression.
   </p>
-  <a href='https://metinas.com/' target='_blank'><span>By METINAS</span></a>       
+  {/* <a href='https://metinas.com/' target='_blank'><span>By METINAS</span></a>        */}
         <ImageConverter />
 
         <div className="mt-20">
