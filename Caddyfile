@@ -1,0 +1,13 @@
+image-optimizer.metinas.dev {
+    # Limit veľkosti tela požiadavky na 40MB na úrovni servera
+    request_body {
+        max_size 40MB
+    }
+
+    # Kompresia odpovedí (zrýchli načítanie webu)
+    encode zstd gzip
+
+    # Proxy na Next.js aplikáciu
+    reverse_proxy app:3000
+}
+
