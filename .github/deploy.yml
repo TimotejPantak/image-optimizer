@@ -1,0 +1,22 @@
+name: Deploy to DigitalOcean
+
+on:
+  push:
+    branches:
+      - master  # Alebo 'master', podľa toho, ako sa volá tvoja hlavná vetva
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy via SSH
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          script: |
+            cd ~/image-optimizer
+            git pull
+            # Použijeme tvoj overený príkaz s pomlčkou
+            docker-compose up -d --build
