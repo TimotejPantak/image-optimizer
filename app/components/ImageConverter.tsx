@@ -166,6 +166,7 @@ export default function ImageConverter({ defaultFormat = 'webp' }: Props) {
   };
 
   const completedCount = files.filter(f => f.status === 'completed').length;
+  const processingCount = files.filter(f => f.status === 'processing' || f.status === 'pending').length;
 
   return (
     <div className="w-full max-w-4xl mx-auto px-4">
@@ -217,8 +218,34 @@ export default function ImageConverter({ defaultFormat = 'webp' }: Props) {
           Convert
         </button>
       </form>
+      {urlLoading && (
+        <div className="mt-3 flex items-center gap-3 px-4 py-3 border rounded-2xl">
+          <Loader2 className="animate-spin text-[#FF3C00]" size={18} />
+          <span className="text-sm font-medium text-slate-600">Fetching image from URL...</span>
+          <div className="flex-1 h-1.5 bg-grey-100 rounded-full overflow-hidden">
+            <div className="h-full bg-[#FF3C00] rounded-full animate-pulse w-2/3" />
+          </div>
+        </div>
+      )}
       {urlError && (
         <p className="mt-2 text-sm text-red-500 font-medium pl-2">{urlError}</p>
+      )}
+
+      {/* Processing Banner */}
+      {processingCount > 0 && (
+        <div className="mt-6 flex items-center gap-3 px-4 py-3 border rounded-2xl">
+          <Loader2 className="animate-spin text-[#FF3C00]" size={18} />
+          <span className="text-sm font-medium text-slate-600">
+            Converting {processingCount} {processingCount === 1 ? 'file' : 'files'}...
+          </span>
+          <div className="flex-1 h-1.5 bg-grey-100 rounded-full overflow-hidden">
+            <div
+              className="h-full bg-[#FF3C00] rounded-full transition-all duration-300"
+              style={{ width: `${files.length > 0 ? (completedCount / files.length) * 100 : 0}%` }}
+            />
+          </div>
+          <span className="text-xs font-bold text-slate-400">{completedCount}/{files.length}</span>
+        </div>
       )}
 
       {/* File List */}
