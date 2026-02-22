@@ -28,7 +28,7 @@ export default function Home() {
         className="relative min-h-screen py-16 overflow-hidden"
         style={{
           backgroundImage:
-            'linear-gradient(to right, #8882 1px, transparent 1px), linear-gradient(to bottom, #8882 1px, transparent 1px)',
+            'linear-gradient(to right, rgba(179, 178, 178, 0.13) 1px, transparent 1px), linear-gradient(to bottom, rgba(179, 178, 178, 0.13) 1px, transparent 1px)',
           backgroundSize: '4rem 4rem',
         }}
       >
