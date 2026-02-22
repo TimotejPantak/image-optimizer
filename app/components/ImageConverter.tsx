@@ -187,11 +187,11 @@ export default function ImageConverter({ defaultFormat = 'webp' }: Props) {
 
       {/* Drag & Drop Area */}
       <div {...getRootProps()} className={`border-4 border-dashed rounded-[2.5rem] p-12 text-center cursor-pointer transition-all ${
-        isDragActive ? 'border-[#FF3C00] bg-orange-50' : 'border-slate-200 hover:border-[#FF3C00] bg-slate-50/50'
+        isDragActive ? 'border-[#FF3C00] bg-orange-50' : 'border-slate-200 hover:border-[#FF3C00] bg-white'
       }`}>
         <input {...getInputProps()} />
         <div className="bg-white w-16 h-16 rounded-2xl shadow-sm flex items-center justify-center mx-auto mb-4">
-          <Upload className="text-[FF3C00]" size={28} />
+          <Upload className="text-[#000000]" size={28} />
         </div>
         <p className="text-xl font-bold text-slate-800">Drop and Convert</p>
         <p className="text-slate-400 mt-1">Files will be processed immediately</p>
@@ -212,7 +212,7 @@ export default function ImageConverter({ defaultFormat = 'webp' }: Props) {
         <button
           type="submit"
           disabled={!urlInput.trim() || urlLoading}
-          className="px-6 py-3.5 bg-slate-900 text-white rounded-2xl font-bold text-sm hover:bg-[#FF3C00] transition-all disabled:opacity-40 disabled:hover:bg-slate-900 hover:cursor-pointer flex items-center gap-2"
+          className="px-6 py-3.5 bg-slate-900 text-white rounded-2xl font-bold text-sm hover:bg-[#FF3C00] transition-all disabled:hover:bg-slate-900 hover:cursor-pointer flex items-center gap-2"
         >
           {urlLoading ? <Loader2 className="animate-spin" size={16} /> : <Download size={16} />}
           Convert

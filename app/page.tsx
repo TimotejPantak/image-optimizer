@@ -24,9 +24,21 @@ export default function Home() {
   return (
     <>
       {/* Hero + Converter */}
-      <main className="min-h-screen bg-white py-16">
+      <main
+        className="relative min-h-screen py-16 overflow-hidden"
+        style={{
+          backgroundImage:
+            'linear-gradient(to right, #8882 1px, transparent 1px), linear-gradient(to bottom, #8882 1px, transparent 1px)',
+          backgroundSize: '4rem 4rem',
+        }}
+      >
+        {/* Top-left glow */}
+        <div className="pointer-events-none absolute -top-32 -left-32 w-96 h-96 rounded-full blur-3xl" style={{ background: 'radial-gradient(circle, rgba(255,60,0,0.18) 0%, transparent 70%)' }} />
+        {/* Bottom-right glow */}
+        <div className="pointer-events-none absolute -bottom-32 -right-32 w-96 h-96 rounded-full blur-3xl" style={{ background: 'radial-gradient(circle, rgba(255,60,0,0.12) 0%, transparent 70%)' }} />
+
         <div className="max-w-4xl mx-auto text-center px-4">
-          <a href="https://metinas.com" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 mb-8 px-4 py-2 bg-slate-50 rounded-full border border-slate-100 hover:border-[#FF3C00] transition-colors">
+          <a href="https://metinas.com" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 mb-8 px-4 py-2 bg-white rounded-full border border-slate-100 hover:border-[#FF3C00] transition-colors">
             <Image src="/metinas_logo.webp" alt="METINAS" width={20} height={20} className="rounded-sm" />
             <span className="text-sm font-bold text-slate-500">By <span className="text-slate-800">METINAS</span></span>
           </a>
@@ -55,7 +67,7 @@ export default function Home() {
       </main>
 
       {/* Features Section */}
-      <section className="bg-slate-50 py-24">
+      <section className="bg-white py-24">
         <div className="max-w-6xl mx-auto px-4">
           <div className="text-center mb-16">
             <p className="text-[#FF3C00] font-bold text-sm uppercase tracking-widest mb-3">Why choose us</p>
@@ -77,7 +89,7 @@ export default function Home() {
       </section>
 
       {/* Logo Marquee */}
-      <section className="py-16 bg-white border-y border-slate-100 overflow-hidden">
+      {/* <section className="py-16 bg-white border-y border-slate-100 overflow-hidden">
         <p className="text-center text-slate-400 font-bold text-xs uppercase tracking-widest mb-10">Powered by modern technologies</p>
         <div className="relative">
           <div className="absolute left-0 top-0 bottom-0 w-24 bg-gradient-to-r from-white to-transparent z-10" />
@@ -98,10 +110,10 @@ export default function Home() {
             )}
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* Footer */}
-      <footer className="bg-slate-50 border-t border-slate-100 py-12">
+      <footer className="bg-white border-t border-slate-100 py-12">
         <div className="max-w-5xl mx-auto px-4">
           <div className="flex flex-col md:flex-row items-center justify-between gap-6">
             <a href="https://metinas.com" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2.5 hover:opacity-70 transition-opacity">
