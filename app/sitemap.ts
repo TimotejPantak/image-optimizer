@@ -1,7 +1,7 @@
 import { MetadataRoute } from 'next'
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = 'https://media-optimizer.vercel.app'
+  const baseUrl = 'https://media-optimizer.metinas.dev'
   
   const slugs = [
     'png-to-webp',

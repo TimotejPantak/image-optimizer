@@ -6,6 +6,7 @@ import { SpeedInsights } from '@vercel/speed-insights/next';
 
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://media-optimizer.metinas.dev'),
   title: 'Free Image Converter | Convert PNG, JPG to WebP & AVIF',
   description: 'Ultra-fast free online image optimizer. Bulk convert and compress images to WebP and AVIF formats for free. Improve your website loading speed.',
   keywords: ['image converter', 'webp converter', 'avif optimizer', 'compress images', 'bulk image conversion'],
