@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 
-const MAX_SIZE = 20 * 1024 * 1024; // 20MB
+const MAX_SIZE = 100 * 1024 * 1024; // 20MB
 
 export async function POST(req: NextRequest) {
   try {
