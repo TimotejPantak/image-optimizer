@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import sharp from "sharp";
 
-const MAX_SIZE = 40 * 1024 * 1024; // 40MB
+const MAX_SIZE = 100 * 1024 * 1024; // 40MB
 
 export async function POST(req: NextRequest) {
   try {
